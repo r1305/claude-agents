@@ -1,0 +1,9 @@
+{
+  "name": "dev-agents",
+  "version": "0.1.1",
+  "description": "Subagentes de Claude Code: orquestador, dev, qa, review, explorer y tooling, con reglas de delegación y modelo por tarea",
+  "author": {
+    "name": "r1305"
+  },
+  "repository": "https://github.com/r1305/claude-agents"
+}

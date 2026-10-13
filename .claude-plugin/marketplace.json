@@ -1,0 +1,16 @@
+{
+  "name": "claude-agents",
+  "owner": {
+    "name": "r1305"
+  },
+  "metadata": {
+    "description": "Subagentes de Claude Code (orquestador, dev, qa, review, explorer, tooling) por modelo y rol"
+  },
+  "plugins": [
+    {
+      "name": "dev-agents",
+      "source": "./plugins/dev-agents",
+      "description": "Seis subagentes de Claude Code para orquestar desarrollo, QA, revisión y exploración, con modelo por tarea y límite de uso"
+    }
+  ]
+}
