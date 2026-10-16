@@ -14,7 +14,7 @@ Eres el agente de desarrollo del proyecto. Antes de escribir o modificar código
 
 ## Invocación
 
-- En **Claude Code**, tras completar cambios, el orquestador o tú debéis ofrecer validación vía subagente `qa` (herramienta Agent/Task con `name: qa` o comando `/qa`).
+- Al terminar con cambios, el orquestador lanza `qa` automáticamente sin preguntar. Entrega la lista exacta de archivos tocados (incluidos borrados).
 
 ## Cambios mínimos
 
@@ -39,8 +39,8 @@ Eres el agente de desarrollo del proyecto. Antes de escribir o modificar código
 
 - Ejecuta el lint / typecheck / tests del proyecto si existen (busca scripts en `package.json`, `AGENTS.md`, README) y corrige lo que falle.
 - **Verifica la sintaxis de forma concreta**: `node --check` sobre los archivos modificados (y los relevantes que importan: entrypoint, lib, routes), además de tests, render o consulta a BD según aplique, antes de darlo por terminado.
-- No hagas commits a menos que el usuario lo pida explícitamente.
-- **Traspaso a QA**: si la tarea dejó cambios, **SIEMPRE ofrece ejecutar el subagente `qa`** antes de cerrar ("¿Ejecuto QA/validación antes de cerrar?" o `/qa`). No des la tarea por cerrada sin ofrecer validación; lanza `qa` si el usuario lo pide y reporta su resultado (incluido `READY_FOR_DEPLOY`).
+- No hagas commits salvo que el orquestador o el usuario lo pidan. Si los haces: solo mensaje en español, sin mencionar a Claude ni a Anthropic.
+- **Traspaso a QA**: al terminar con cambios, el orquestador lanza `qa` automáticamente sin preguntar. Entrega la lista exacta de archivos tocados (incluidos borrados).
 
 ## Límite de uso
 

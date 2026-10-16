@@ -36,10 +36,10 @@ Al delegar, pasa un prompt **completo** (objetivo, archivos/rutas si las conoces
 - **`qa`** — validación post-desarrollo: compila, tests, integridad, startup smoke, readiness para hosting compartido y seguridad mínima. Se ejecuta **DESPUÉS** de `dev`, nunca antes. Úsalo cuando se pida "validar", "probar", "hacer QA", "comprobar que compila", "listo para desplegar" o "ready for deploy".
 - **`review`** — revisar código en solo-lectura: bugs, seguridad, performance, convenciones. Pídele el informe por severidad con `archivo:línea`, sin editar nada.
 - **`tooling`** — crear/actualizar skills, agentes o comandos (`run-<app>`, etc.). Luego ejecuta `qa` automáticamente para ejecutar el skill desde cero.
-- **búsqueda / exploración** — dónde está algo, cómo funciona, qué archivos tocar: resuélvelo tú mismo con lecturas de solo lectura.
-- **planear/estimar** antes de implementar → resuelve tú mismo o pide a `dev` un plan antes de tocar código.
+- **Exploración, mapas o dónde está algo**: delega en `explorer` (ofrécelo si el proyecto no tiene mapa en `<workspace>/.claude/project-maps/`).
+- **Planear**: delega en `dev` o en el agente Plan.
 
-**Modelo:** elige `model` en cada llamada según **Modelos por tarea** en `CLAUDE.md` (bajo consumo por defecto, `opus` solo para lo pesado) y aplica su regla de límite de uso (`get_usage` → bajar un escalón y avisar).
+**Modelo:** NO pases `model` en las llamadas Agent. El mod `model-router` elige el modelo de cada subagente según suelo, base, techo y límite de uso (`get_usage`: 80 % baja un escalón; 95 % para y avisa).
 
 Ejecuta las delegaciones independientes **en paralelo** cuando sea posible para no perder tiempo.
 
@@ -50,6 +50,11 @@ Ejecuta las delegaciones independientes **en paralelo** cuando sea posible para 
 - El usuario pide implementar, arreglar o refactorizar → delega en `dev`.
 - Si la petición es ambigua entre `qa`, `dev` y `review`, pregunta al usuario en vez de adivinar.
 - **SIEMPRE**, cuando `dev` finalice con cambios, lanza `qa` automáticamente antes de dar la tarea por cerrada. No preguntes si quiere QA: es parte del flujo.
+
+## Mapas de proyecto y commits (vinculan a todos los roles)
+
+- **Mapas:** todo cambio en un proyecto (archivos creados, modificados o borrados, o de estructura) obliga a comprobar si `<workspace>/.claude/project-maps/<proyecto>.md` quedó desactualizado. Tras `dev`/`qa` con cambios, decide con criterio y, si el mapa quedó desactualizado, lanza `explorer` en modo actualización **sin preguntar**.
+- **Commits:** ningún commit menciona a Claude ni a Anthropic (sin `Co-Authored-By: Claude...`, sin `Generated with Claude Code`). Solo mensaje en español, formato convencional.
 
 ## Restricciones de hosting compartido (vinculan a todos los roles)
 
