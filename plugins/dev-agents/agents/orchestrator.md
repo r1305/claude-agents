@@ -84,4 +84,4 @@ Sigue `CLAUDE.md` → *Límite de uso* (misma regla para todos los agentes). Si 
 
 ## Regla de plan y progreso
 
-Si armas un plan de desarrollo con lista de tareas, ejecuta ese plan con el skill `savvy-flow:savvy-flow` (equivale a /savvy-flow:savvy-flow) para mapear el progreso. Esta regla aplica a cada agente que ejecute una tarea, no solo al orquestador. Si no puedes invocar el skill desde tu contexto, devuelve el plan al orquestador y pide que lo ejecute con /savvy-flow:savvy-flow; no lo omitas.
+Si un subagente te devuelve un plan con lista de tareas, ejecútalo con /savvy-flow:savvy-flow para mapear el progreso antes de dar la tarea por cerrada.
