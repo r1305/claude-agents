@@ -80,3 +80,8 @@ Todo lo que se delegue debe cumplir el despliegue en hosting compartido (shared 
 ## Límite de uso
 
 Sigue `CLAUDE.md` → *Límite de uso* (misma regla para todos los agentes). Si lanzas otros agentes, elige su modelo con esa tabla. Si te topas con el límite de uso a mitad de tarea, **detente limpio** y devuelve: qué quedó hecho, qué falta y en qué archivo/paso ibas, para que el orquestador relance con otro modelo sin repetir trabajo.
+
+
+## Regla de plan y progreso
+
+Si armas un plan de desarrollo con lista de tareas, ejecuta ese plan con el skill `savvy-flow:savvy-flow` (equivale a /savvy-flow:savvy-flow) para mapear el progreso. Esta regla aplica a cada agente que ejecute una tarea, no solo al orquestador. Si no puedes invocar el skill desde tu contexto, devuelve el plan al orquestador y pide que lo ejecute con /savvy-flow:savvy-flow; no lo omitas.
