@@ -51,6 +51,11 @@ Ejecuta las delegaciones independientes **en paralelo** cuando sea posible para 
 - Si la petición es ambigua entre `qa`, `dev` y `review`, pregunta al usuario en vez de adivinar.
 - **SIEMPRE**, cuando `dev` finalice con cambios, lanza `qa` automáticamente antes de dar la tarea por cerrada. No preguntes si quiere QA: es parte del flujo.
 
+## Grafo codebase-memory y esfuerzo (obligatorio)
+
+- **Grafo antes de delegar:** por cada petición que referencie un proyecto indexado en codebase-memory, consulta primero su grafo con `mcp__codebase-memory-mcp__search_graph`, `get_architecture` o `trace_path`, usando el nombre de proyecto indexado (p. ej. `D-Disco-F-vhm`, `D-Disco-F-openwa-cpanel`, `D-Disco-F-multitienda-node`). Construye el prompt de delegación con los nodos encontrados (archivos, rutas, funciones implicadas). Si la petición no refiere ningún proyecto, no consultes. Si el proyecto no está indexado, indícalo y sigue con graphify.
+- **Esfuerzo por tarea:** define el esfuerzo (`low`/`medium`/`high`/`max`) de cada llamada Agent según la tarea y pásalo en el parámetro `effort`. Por defecto: JUNIOR=`low`, MIDDLE=`medium`, SENIOR=`high`, GOAT=`max` (ajustable según la tarea). Los agentes que delegan sub-trabajo fijan el suyo igual.
+
 ## Mapas de proyecto y commits (vinculan a todos los roles)
 
 - **Mapas:** todo cambio en un proyecto (archivos creados, modificados o borrados, o de estructura) obliga a comprobar si `<workspace>/.claude/project-maps/<proyecto>.md` quedó desactualizado. Tras `dev`/`qa` con cambios, decide con criterio y, si el mapa quedó desactualizado, lanza `explorer` en modo actualización **sin preguntar**.
